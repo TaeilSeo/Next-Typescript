@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from "next";
+import Link from "next/link";
 import { Notice, GetNoticeResults } from "../../types";
 import styles from "../../styles/Home.module.css";
 
@@ -6,7 +7,13 @@ const Jobhunt: NextPage<{ notices: Notice[] }> = ({ notices }) => {
     return (
         <main className={styles.main}>
             {notices.map((notice) => {
-                return <li key={notice.id}>{notice.company}</li>;
+                return <div key={notice.id}>
+                    <Link href={`/jobhunt/${notice.id}`}>
+                        <a>
+                            <h3>{notice.company}</h3>
+                        </a>
+                    </Link>
+                </div>;
             })}
         </main>
     );
